@@ -15,6 +15,14 @@ EXCALENDARWIDGET_LIB_VERSION = $${EXCALENDARWIDGET_LIB_VER_MAJ}.$${EXCALENDARWID
 
 EXCALENDARWIDGET_LIB_DIR = $$PWD/source/library/
 
-isEmpty(INSTALL_PREFIX): INSTALL_PREFIX = /opt/excalendarwidget-$$EXCALENDARWIDGET_LIB_VERSION
+# set additional configuration options like plugin or static here
+EXCALENDARWIDGET_CONFIG =
+
+# build included library usage example (YES or NO)
+BUILD_EXAMPLE = YES
+
+# use qmake INSTALL_PREFIX=<custom path> for custom install prefix
+
+isEmpty(INSTALL_PREFIX): INSTALL_PREFIX = /opt/$$EXCALENDARWIDGET_LIB_NAME-$$EXCALENDARWIDGET_LIB_VERSION
 isEmpty(INSTALL_INCLUDES_DIR): INSTALL_INCLUDES_DIR = $$INSTALL_PREFIX/include
 isEmpty(INSTALL_LIBS_DIR): INSTALL_LIBS_DIR = $$INSTALL_PREFIX/lib
