@@ -34,7 +34,7 @@ QDate ExCalendarWidget::maximumDate() const
 QDate ExCalendarWidget::currentDate() const
 {
     Q_D(const ExCalendarWidget);
-    return d->month_view->currentDate();
+    return d->current_date;
 }
 
 QSize ExCalendarWidget::minimumSizeHint() const
@@ -134,16 +134,22 @@ void ExCalendarWidget::setCurrentDate(const QDate &date)
     if (max_date.isValid())
         current_date = qMin(current_date, max_date);
 
-    d->month_view->blockSignals(true);
-    d->year_view->blockSignals(true);
-    d->decade_view->blockSignals(true);
+    if (d->current_date != current_date) {
+        d->month_view->blockSignals(true);
+        d->year_view->blockSignals(true);
+        d->decade_view->blockSignals(true);
 
-    d->navigator->setCurrentDate(current_date);
-    d->month_view->setCurrentDate(current_date);
-    d->year_view->setCurrentDate(current_date);
-    d->decade_view->setCurrentDate(current_date);
+        d->current_date = current_date;
 
-    d->month_view->blockSignals(false);
-    d->year_view->blockSignals(false);
-    d->decade_view->blockSignals(false);
+        d->navigator->setCurrentDate(current_date);
+        d->month_view->setCurrentDate(current_date);
+        d->year_view->setCurrentDate(current_date);
+        d->decade_view->setCurrentDate(current_date);
+
+        d->month_view->blockSignals(false);
+        d->year_view->blockSignals(false);
+        d->decade_view->blockSignals(false);
+
+        emit currentDateChanged(d->current_date);
+    }
 }

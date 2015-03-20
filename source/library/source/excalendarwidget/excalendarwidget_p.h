@@ -3,6 +3,8 @@
 
 #include <QObject>
 
+#include <QDate>
+
 #include <QVBoxLayout>
 #include <QStackedLayout>
 #include <QFrame>
@@ -21,6 +23,8 @@ class ExCalendarWidgetPrivate : public QObject {
     Q_DECLARE_PUBLIC(ExCalendarWidget)
 public:
     ExCalendarWidget *q_ptr;
+
+    QDate current_date;
 
     QVBoxLayout *main_layout;
     QStackedLayout *views_layout;

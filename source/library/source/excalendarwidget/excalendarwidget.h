@@ -28,6 +28,8 @@ public:
 
     QPushButton *previousPeriodButton() const;
     QPushButton *nextPeriodButton() const;
+signals:
+    void currentDateChanged(const QDate &date);
 public slots:
     void setMinimumDate(const QDate &date);
     void setMaximumDate(const QDate &date);
