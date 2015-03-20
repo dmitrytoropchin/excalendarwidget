@@ -16,7 +16,8 @@ EXCALENDARWIDGET_LIB_VERSION = $${EXCALENDARWIDGET_LIB_VER_MAJ}.$${EXCALENDARWID
 EXCALENDARWIDGET_LIB_DIR = $$PWD/source/library/
 
 # set additional configuration options like plugin or static here
-EXCALENDARWIDGET_CONFIG =
+# or use qmake EXCALENDARWIDGET_CONFIG=<your option here>
+isEmpty(EXCALENDARWIDGET_CONFIG): EXCALENDARWIDGET_CONFIG =
 
 # build included library usage example (YES or NO)
 BUILD_EXAMPLE = YES
