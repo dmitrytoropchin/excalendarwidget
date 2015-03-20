@@ -9,13 +9,16 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
+    // simple usage
     ExCalendarWidget calendar;
     calendar.setWindowTitle("Calendar Widget Example");
     calendar.show();
 
+    // example on stylesheets
     ExCalendarWidget styled_calendar;
     styled_calendar.setWindowTitle("Styled Calendar Widget Example");
 
+    // unsetting button icons to replace them from stylesheet
     styled_calendar.nextPeriodButton()->setIcon(QIcon());
     styled_calendar.previousPeriodButton()->setIcon(QIcon());
 
@@ -25,10 +28,12 @@ int main(int argc, char *argv[])
                 "font-size: 12px;"
                 "}"
                 ""
+                // navigation bar
                 "QFrame#navigator {"
                 "background-color: #484741;"
                 "}"
                 ""
+                // navigation bar buttons
                 "QFrame#navigator QPushButton {"
                 "color: #ffffff;"
                 "border-color: #484741;"
@@ -65,6 +70,7 @@ int main(int argc, char *argv[])
                 "background-image: url(icons/arrow-forward-disabled.png);"
                 "}"
                 ""
+                // header with week day names for month view
                 "QHeaderView::section {"
                 "background-color: #484741;"
                 "border: none;"
@@ -72,6 +78,7 @@ int main(int argc, char *argv[])
                 "padding: 4px;"
                 "}"
                 ""
+                // tables with month, year and decade views
                 "QTableWidget {"
                 "background-color: #484741;"
                 "color: #ffffff;"
@@ -87,6 +94,7 @@ int main(int argc, char *argv[])
                 "}"
                 );
 
+    // also support date range setting
     styled_calendar.setMaximumDate(QDate(2008, 4, 13));
 
     styled_calendar.show();
