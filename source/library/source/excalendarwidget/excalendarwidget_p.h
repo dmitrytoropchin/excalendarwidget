@@ -26,6 +26,8 @@ public:
 
     QDate current_date;
 
+    bool is_animated;
+
     QVBoxLayout *main_layout;
     QStackedLayout *views_layout;
 

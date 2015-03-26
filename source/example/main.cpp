@@ -12,6 +12,9 @@ int main(int argc, char *argv[])
     // simple usage
     ExCalendarWidget calendar;
     calendar.setWindowTitle("Calendar Widget Example");
+    // disable transition animations
+    calendar.setAnimated(false);
+
     calendar.show();
 
     // example on stylesheets

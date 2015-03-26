@@ -4,7 +4,8 @@
 
 ExCalendarWidgetPrivate::ExCalendarWidgetPrivate(ExCalendarWidget *q)  :
     QObject(),
-    q_ptr(q)
+    q_ptr(q),
+    is_animated(true)
 {
 }
 
@@ -82,27 +83,33 @@ void ExCalendarWidgetPrivate::onNavigatorStateChanged(int state, int previous_st
             break;
     }
 
-    ExCalendarView *current_view = qobject_cast<ExCalendarView *>(views_layout->currentWidget());
-    if (current_view != 0) {
-        if (state == ExCalendarNavigator::StateMonth && previous_state == ExCalendarNavigator::StateDecade)
-            current_view->animatedSlideTop();
-        else if (state < previous_state)
-            current_view->animatedSlideBottom();
-        else if (state > previous_state)
-            current_view->animatedSlideTop();
+    if (is_animated) {
+        ExCalendarView *current_view = qobject_cast<ExCalendarView *>(views_layout->currentWidget());
+        if (current_view != 0) {
+            if (state == ExCalendarNavigator::StateMonth && previous_state == ExCalendarNavigator::StateDecade)
+                current_view->animatedSlideTop();
+            else if (state < previous_state)
+                current_view->animatedSlideBottom();
+            else if (state > previous_state)
+                current_view->animatedSlideTop();
+        }
     }
 }
 
 void ExCalendarWidgetPrivate::onNavigatorPreviousPeriodButtonClicked()
 {
-    ExCalendarView *current_view = qobject_cast<ExCalendarView *>(views_layout->currentWidget());
-    if (current_view != 0)
-        current_view->animatedSlideLeft();
+    if (is_animated) {
+        ExCalendarView *current_view = qobject_cast<ExCalendarView *>(views_layout->currentWidget());
+        if (current_view != 0)
+            current_view->animatedSlideLeft();
+    }
 }
 
 void ExCalendarWidgetPrivate::onNavigatorNextPeriodButtonClicked()
 {
-    ExCalendarView *current_view = qobject_cast<ExCalendarView *>(views_layout->currentWidget());
-    if (current_view != 0)
-        current_view->animatedSlideRight();
+    if (is_animated) {
+        ExCalendarView *current_view = qobject_cast<ExCalendarView *>(views_layout->currentWidget());
+        if (current_view != 0)
+            current_view->animatedSlideRight();
+    }
 }

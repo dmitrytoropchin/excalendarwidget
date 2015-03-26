@@ -25,41 +25,6 @@ QDate ExCalendarWidget::minimumDate() const
     return d->month_view->minimumDate();
 }
 
-QDate ExCalendarWidget::maximumDate() const
-{
-    Q_D(const ExCalendarWidget);
-    return d->month_view->maximumDate();
-}
-
-QDate ExCalendarWidget::currentDate() const
-{
-    Q_D(const ExCalendarWidget);
-    return d->current_date;
-}
-
-QSize ExCalendarWidget::minimumSizeHint() const
-{
-    Q_D(const ExCalendarWidget);
-    return d->month_view->minimumSizeHint() + QSize(0, d->navigator->minimumSizeHint().height());
-}
-
-QSize ExCalendarWidget::sizeHint() const
-{
-    return minimumSizeHint();
-}
-
-QPushButton *ExCalendarWidget::previousPeriodButton() const
-{
-    Q_D(const ExCalendarWidget);
-    return d->navigator->previousPeriodButton();
-}
-
-QPushButton *ExCalendarWidget::nextPeriodButton() const
-{
-    Q_D(const ExCalendarWidget);
-    return d->navigator->nextPeriodButton();
-}
-
 void ExCalendarWidget::setMinimumDate(const QDate &date)
 {
     Q_D(ExCalendarWidget);
@@ -78,6 +43,12 @@ void ExCalendarWidget::setMinimumDate(const QDate &date)
     d->decade_view->blockSignals(false);
 
     setCurrentDate(d->month_view->currentDate());
+}
+
+QDate ExCalendarWidget::maximumDate() const
+{
+    Q_D(const ExCalendarWidget);
+    return d->month_view->maximumDate();
 }
 
 void ExCalendarWidget::setMaximumDate(const QDate &date)
@@ -118,6 +89,47 @@ void ExCalendarWidget::setDateRange(const QDate &min_date, const QDate &max_date
     d->decade_view->blockSignals(false);
 
     setCurrentDate(d->month_view->currentDate());
+}
+
+QDate ExCalendarWidget::currentDate() const
+{
+    Q_D(const ExCalendarWidget);
+    return d->current_date;
+}
+
+bool ExCalendarWidget::isAnimated() const
+{
+    Q_D(const ExCalendarWidget);
+    return d->is_animated;
+}
+
+void ExCalendarWidget::setAnimated(bool on)
+{
+    Q_D(ExCalendarWidget);
+    d->is_animated = on;
+}
+
+QSize ExCalendarWidget::minimumSizeHint() const
+{
+    Q_D(const ExCalendarWidget);
+    return d->month_view->minimumSizeHint() + QSize(0, d->navigator->minimumSizeHint().height());
+}
+
+QSize ExCalendarWidget::sizeHint() const
+{
+    return minimumSizeHint();
+}
+
+QPushButton *ExCalendarWidget::previousPeriodButton() const
+{
+    Q_D(const ExCalendarWidget);
+    return d->navigator->previousPeriodButton();
+}
+
+QPushButton *ExCalendarWidget::nextPeriodButton() const
+{
+    Q_D(const ExCalendarWidget);
+    return d->navigator->nextPeriodButton();
 }
 
 void ExCalendarWidget::setCurrentDate(const QDate &date)

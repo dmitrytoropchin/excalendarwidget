@@ -19,9 +19,17 @@ public:
     ~ExCalendarWidget();
 
     QDate minimumDate() const;
+    void setMinimumDate(const QDate &date);
+
     QDate maximumDate() const;
+    void setMaximumDate(const QDate &date);
+
+    void setDateRange(const QDate &min_date, const QDate &max_date);
 
     QDate currentDate() const;
+
+    bool isAnimated() const;
+    void setAnimated(bool on);
 
     QSize minimumSizeHint() const;
     QSize sizeHint() const;
@@ -31,11 +39,6 @@ public:
 signals:
     void currentDateChanged(const QDate &date);
 public slots:
-    void setMinimumDate(const QDate &date);
-    void setMaximumDate(const QDate &date);
-
-    void setDateRange(const QDate &min_date, const QDate &max_date);
-
     void setCurrentDate(const QDate &date);
 };
 
